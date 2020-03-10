@@ -65,6 +65,7 @@ func (port *Config) GenRule() string {
 			e.Server = strings.Split(ip, ";")[0]
 		}
 		nftCMD.WriteString(fmt.Sprintf("add rule ip %s prerouting tcp dport %d counter mark set 0x00000089 dnat to %s:%d\n", table, e.ListenPort, e.Server, e.ServerPort))
+		nftCMD.WriteString(fmt.Sprintf("add rule ip %s prerouting udp dport %d counter mark set 0x00000089 dnat to %s:%d\n", table, e.ListenPort, e.Server, e.ServerPort))
 	}
 	logger.Debug(nftCMD.String())
 	return nftCMD.String()
