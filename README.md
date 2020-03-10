@@ -4,7 +4,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/FanhuaCloud/nft-port)](https://github.com/FanhuaCloud/nft-port/stargazers)
 ![language](https://img.shields.io/badge/language-go-orange.svg)
 
-基于nftables的端口转发工具
+基于nftables的端口中转工具
 ## 安装
 您可以从GitHub上面下载预构建版本
 ```bash
