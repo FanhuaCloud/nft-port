@@ -39,12 +39,17 @@ func runRules(rule string) {
 	}
 	cmd := exec.Command("nft", "-f", "/tmp/ipv4-portforward")
 	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
 	// Run 和 Start只能用一个
 	err = cmd.Run()
 	if err != nil {
 		logger.Debug(err)
 	}
-	logger.Info("Load rule successed.")
+	if !cmd.ProcessState.Success() {
+		logger.Info("Load rule failed, please check the stderr.")
+	} else {
+		logger.Info("Load rule successed.")
+	}
 }
 
 func resolveDomain(domain *string) {
