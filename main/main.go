@@ -96,6 +96,24 @@ func listRules(configPath *string) {
 	}
 }
 
+func listNftRules(configPath *string) {
+	//加载yaml
+	conf, err := yamlUtil.ReadYaml(*configPath)
+	if err != nil {
+		logger.Error(err)
+		return
+	}
+	//nft list table ip portforward
+	cmd := exec.Command("nft", "list", "table", conf.TableName)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	// Run 和 Start只能用一个
+	err = cmd.Run()
+	if err != nil {
+		logger.Error(err)
+	}
+}
+
 func main() {
 	//初始化日志
 	err := logger.SetLogger(`{"Console": {"level": "INFO","color": true}}`)
@@ -107,7 +125,7 @@ func main() {
 	logger.Info("Aauthor: https://github.com/FanhuaCloud")
 
 	//设置flag
-	action := flag.String("a", "help", "Actions that need to be performed, can use resolve, load, clear, list.")
+	action := flag.String("a", "help", "Actions that need to be performed, can use resolve, load, clear, list, nft.")
 	domain := flag.String("d", "www.baidu.com", "Domain names that need to be resolved")
 	configPath := flag.String("c", "./config.yaml", "config_path")
 	flag.Parse()
@@ -129,6 +147,9 @@ func main() {
 	case "list":
 		// 列出所有规则
 		listRules(configPath)
+	case "nft":
+		// 查看nft规则
+		listNftRules(configPath)
 	default:
 		flag.PrintDefaults()
 		break
