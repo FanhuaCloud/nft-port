@@ -34,7 +34,7 @@ func runRules(rule string) {
 	_, err = exec.LookPath("nft")
 	//查找nft，不存在报错
 	if err != nil {
-		logger.Debug(err)
+		logger.Error(err)
 		return
 	}
 	cmd := exec.Command("nft", "-f", "/tmp/ipv4-portforward")
@@ -43,7 +43,7 @@ func runRules(rule string) {
 	// Run 和 Start只能用一个
 	err = cmd.Run()
 	if err != nil {
-		logger.Debug(err)
+		logger.Error(err)
 	}
 	if !cmd.ProcessState.Success() {
 		logger.Info("Load rule failed, please check the stderr.")
