@@ -18,10 +18,11 @@ chmod +x nft_port_amd64_linux
 构建使用go build即可，全平台均可编译
 ## 使用
 ```bash
-2020-03-10 16:01:32 [INFO] [nft-port/main/main.go:104] nft-port version 1.0
-2020-03-10 16:01:32 [INFO] [nft-port/main/main.go:105] Aauthor: https://github.com/FanhuaCloud
+consoleLogger Init:{"level":"INFO","color":true,"LogLevel":0}
+2020-03-10 20:03:03 [INFO] [nft-port/main/main.go:124] nft-port version 1.1
+2020-03-10 20:03:03 [INFO] [nft-port/main/main.go:125] Aauthor: https://github.com/FanhuaCloud
   -a string
-    	Actions that need to be performed, can use resolve, load, clear, list. (default "help")
+    	Actions that need to be performed, can use resolve, load, clear, list, nft. (default "help")
   -c string
     	config_path (default "./config.yaml")
   -d string
@@ -29,7 +30,7 @@ chmod +x nft_port_amd64_linux
 ```
 ### 测试HttpDNS
 ```bash
-[root@iZbp15mr3banydZ ~]# ./build_nft_port_linux_linux -a resolve -d www.baidu.com
+[root@iZbp15mr3banydZ ~]# ./nft_port_amd64_linux -a resolve -d www.baidu.com
 consoleLogger Init:{"level":"DEBG","color":true,"LogLevel":0}
 2020-03-10 16:50:27 [INFO] [nft-port/main/main.go:104] nft-port version 1.0
 2020-03-10 16:50:27 [INFO] [nft-port/main/main.go:105] Aauthor: https://github.com/FanhuaCloud
@@ -37,11 +38,11 @@ consoleLogger Init:{"level":"DEBG","color":true,"LogLevel":0}
 ```
 ### 列出规则
 ```bash
-./build_nft_port_linux_linux -a list -c ./config.yaml
+./nft_port_amd64_linux -a list -c ./config.yaml
 ```
 ### 加载规则
 ```bash
-[root@iZbp15mr3banydZ ~]# ./build_nft_port_linux_linux -a load
+[root@iZbp15mr3banydZ ~]# ./nft_port_amd64_linux -a load
 consoleLogger Init:{"level":"DEBG","color":true,"LogLevel":0}
 2020-03-10 16:51:47 [INFO] [nft-port/main/main.go:104] nft-port version 1.0
 2020-03-10 16:51:47 [INFO] [nft-port/main/main.go:105] Aauthor: https://github.com/FanhuaCloud
@@ -63,7 +64,7 @@ add rule ip portforward prerouting tcp dport 1435 counter mark set 0x00000089 dn
 ```
 ### 清除规则
 ```bash
-[root@iZbp15mr3banydZ ~]# ./build_nft_port_linux_linux -a clear -c ./config.yaml 
+[root@iZbp15mr3banydZ ~]# ./nft_port_amd64_linux -a clear -c ./config.yaml 
 consoleLogger Init:{"level":"DEBG","color":true,"LogLevel":0}
 2020-03-10 16:53:00 [INFO] [nft-port/main/main.go:104] nft-port version 1.0
 2020-03-10 16:53:00 [INFO] [nft-port/main/main.go:105] Aauthor: https://github.com/FanhuaCloud
