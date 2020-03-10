@@ -28,6 +28,7 @@ type Port struct {
 }
 
 func ReadYaml(configPath string) (*Config, error) {
+	logger.Info("Load config：" + configPath)
 	conf := new(Config)
 	yamlFile, err := ioutil.ReadFile(configPath)
 	if err != nil {

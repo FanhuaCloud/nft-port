@@ -58,7 +58,6 @@ func resolveDomain(domain *string) {
 
 func loadRules(configPath *string) {
 	//加载yaml
-	logger.Info("Load config：" + *configPath)
 	conf, err := yamlUtil.ReadYaml(*configPath)
 	if err != nil {
 		logger.Error(err)
@@ -71,7 +70,6 @@ func loadRules(configPath *string) {
 
 func clearRules(configPath *string) {
 	//加载yaml
-	logger.Info("Load config：" + *configPath)
 	conf, err := yamlUtil.ReadYaml(*configPath)
 	if err != nil {
 		logger.Error(err)
@@ -82,7 +80,6 @@ func clearRules(configPath *string) {
 
 func listRules(configPath *string) {
 	//加载yaml
-	logger.Info("Load config：" + *configPath)
 	conf, err := yamlUtil.ReadYaml(*configPath)
 	if err != nil {
 		logger.Error(err)
