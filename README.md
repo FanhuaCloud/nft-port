@@ -14,6 +14,11 @@ cd nft-port
 chmod +x nft_port_amd64_linux
 ./nft_port_amd64_linux -a help
 ```
+为了正常使用，您需要安装nftables，并且开启ip_forward
+```bash
+# 开启ip_forward
+echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
+```
 ## 构建
 构建使用go build即可，全平台均可编译
 ## 使用
