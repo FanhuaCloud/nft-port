@@ -11,8 +11,8 @@
 wget https://github.com/FanhuaCloud/nft-port/releases/latest/download/nft-port.zip
 unzip nft-port.zip
 cd nft-port
-chmod +x nft_port_linux
-./nft_port_linux -a help
+chmod +x nft_port_amd64_linux
+./nft_port_amd64_linux -a help
 ```
 ## 构建
 构建使用go build即可，全平台均可编译
@@ -75,6 +75,23 @@ flush table ip portforward
 2020-03-10 16:53:00 [INFO] [nft-port/main/main.go:33] Use nft -f to load rule.
 2020-03-10 16:53:00 [INFO] [nft-port/main/main.go:47] Load rule successed.
 
+```
+### 查看原始nftables规则
+```bash
+[root@ecs-9JW nft-port]# ./nft_port_amd64_linux -a nft
+consoleLogger Init:{"level":"INFO","color":true,"LogLevel":0}
+2020-03-10 19:57:48 [INFO] [nft-port/main/main.go:124] nft-port version 1.1
+2020-03-10 19:57:48 [INFO] [nft-port/main/main.go:125] Aauthor: https://github.com/FanhuaCloud
+2020-03-10 19:57:48 [INFO] [nft-port/main/yaml/yaml_util.go:31] Load config：./config.yaml
+table ip portforward {
+	chain prerouting {
+		type nat hook prerouting priority -100; policy accept;
+	}
+
+	chain postrouting {
+		type nat hook postrouting priority 100; policy accept;
+	}
+}
 ```
 ## 配置文件
 程序使用yaml格式配置文件，默认从./config.yaml读取，可使用 -c 指定配置文件
