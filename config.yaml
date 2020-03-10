@@ -1,0 +1,13 @@
+table-name: portforward
+
+port:
+  - name: "test"
+    type: ip # dns, or ip
+    listen-port: 1433 # listen port
+    server: server # server address
+    port: 443 # server port
+  - name: "test2"
+    type: dns # dns, or ip
+    listen-port: 1435 # listen port
+    server: server # server address
+    port: 443 # server port
