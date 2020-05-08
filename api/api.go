@@ -91,6 +91,7 @@ func delPort(c *gin.Context) {
 		c.String(http.StatusInternalServerError, err.Error())
 		return
 	}
+	conf.LoadRules()
 	c.JSON(http.StatusOK, gin.H{
 		"status": true,
 	})
@@ -104,6 +105,7 @@ func addPort(c *gin.Context) {
 		return
 	}
 	conf.Port = append(conf.Port, port)
+	port.InstallRules(conf.TableName)
 	d, err := yaml.Marshal(&conf)
 	if err != nil {
 		logger.Error(err)

@@ -54,6 +54,8 @@ func main() {
 			return
 		}
 		logger.Info("Start daemon api server")
+		// 加载一次配置
+		conf.LoadRules()
 		err := api.RunApiServer(fmt.Sprintf("%s:%d", daemonListenIP, daemonPort), conf, *configPath)
 		if err != nil {
 			logger.Error(err)

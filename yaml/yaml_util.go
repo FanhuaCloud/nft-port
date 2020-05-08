@@ -160,3 +160,11 @@ func (cfg *Config) LoadRules() {
 func (cfg *Config) ClearRules() {
 	runRules(cfg.GenClearRule())
 }
+
+func (port *Port) InstallRules(table string) {
+	var nftCMD = new(strings.Builder)
+	nftCMD.WriteString("#! /usr/sbin/nft -f\n\n")
+	nftCMD.WriteString(fmt.Sprintf("add rule ip %s prerouting tcp dport %d counter mark set 0x00000089 dnat to %s:%d\n", table, port.ListenPort, port.Server, port.ServerPort))
+	nftCMD.WriteString(fmt.Sprintf("add rule ip %s prerouting udp dport %d counter mark set 0x00000089 dnat to %s:%d\n", table, port.ListenPort, port.Server, port.ServerPort))
+	runRules(nftCMD.String())
+}
