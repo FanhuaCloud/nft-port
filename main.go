@@ -30,12 +30,30 @@ func main() {
 	action := flag.String("a", "help", "Actions that need to be performed, can use resolve, load, clear, list, nft.")
 	domain := flag.String("d", "www.baidu.com", "Domain names that need to be resolved")
 	configPath := flag.String("c", "./config.yaml", "config_path")
-	//isDaemon := flag.Bool("m", false, "Use daemon mode")
+	isDaemon := flag.Bool("m", false, "Use daemon mode")
 	flag.Parse()
 
 	conf, err := yamlUtil.ReadYaml(*configPath)
 	if err != nil {
 		logger.Error("Read config failed.")
+		return
+	}
+
+	if *isDaemon {
+		logger.Info("Use the daemon mode")
+		daemonPort := conf.DaemonConf.Port
+		daemonApiKey := conf.DaemonConf.ApiKey
+		logger.Info(daemonPort)
+		logger.Info(daemonApiKey)
+		if daemonPort == 0 {
+			daemonPort = 8766
+		}
+		// 判断端口
+		if daemonPort <= 0 || daemonPort > 65535 {
+			logger.Error("Daemon port is error.")
+			return
+		}
+		logger.Info("Start daemon api server")
 		return
 	}
 

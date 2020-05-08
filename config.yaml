@@ -1,5 +1,9 @@
 table-name: portforward
 
+daemon:
+  port: 8387
+  key: "apikey"
+
 port:
   - name: "test"
     type: ip # dns, or ip

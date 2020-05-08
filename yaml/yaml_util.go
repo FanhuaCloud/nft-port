@@ -13,8 +13,14 @@ import (
 )
 
 type Config struct {
-	TableName string `yaml:"table-name"`
-	Port      []Port `yaml:"port"`
+	TableName  string     `yaml:"table-name"`
+	DaemonConf DaemonConf `yaml:"daemon"`
+	Port       []Port     `yaml:"port"`
+}
+
+type DaemonConf struct {
+	Port   int    `yaml:"port"`
+	ApiKey string `yaml:"key"`
 }
 
 type Port struct {
