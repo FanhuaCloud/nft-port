@@ -30,11 +30,11 @@ type Port struct {
 	//listen-port: 1433 # listen port
 	//server: server # server address
 	//port: 443 # server port
-	Name       string `yaml:"name"`
-	Type       string `yaml:"type"`
-	ListenPort int    `yaml:"listen-port"`
-	Server     string `yaml:"server"`
-	ServerPort int    `yaml:"port"`
+	Name       string `yaml:"name" json:"name"`
+	Type       string `yaml:"type" json:"type"`
+	ListenPort int    `yaml:"listen-port" json:"listen_port"`
+	Server     string `yaml:"server" json:"server"`
+	ServerPort int    `yaml:"port" json:"server_port"`
 }
 
 func runRules(rule string) {

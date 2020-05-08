@@ -54,7 +54,7 @@ func main() {
 			return
 		}
 		logger.Info("Start daemon api server")
-		err := api.RunApiServer(fmt.Sprintf("%s:%d", daemonListenIP, daemonPort), conf)
+		err := api.RunApiServer(fmt.Sprintf("%s:%d", daemonListenIP, daemonPort), conf, *configPath)
 		if err != nil {
 			logger.Error(err)
 		}
