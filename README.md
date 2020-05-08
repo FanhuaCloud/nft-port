@@ -99,12 +99,31 @@ table ip portforward {
 	}
 }
 ```
+
+## apiserver
+使用-m启动apiserver，程序将以daemon方式接受rest请求，目前版本暂未实现
+```bash
+[root@ecs-9JW ~]# ./nft_port_amd64_linux -m
+consoleLogger Init:{"level":"INFO","color":true,"LogLevel":0}
+2020-05-08 11:05:14 [INFO] [nft-port/main.go:26] nft-port version 1.1
+2020-05-08 11:05:14 [INFO] [nft-port/main.go:27] Aauthor: https://github.com/FanhuaCloud
+2020-05-08 11:05:14 [INFO] [nft-port/yaml/yaml_util.go:82] Load config：./config.yaml
+2020-05-08 11:05:14 [INFO] [nft-port/main.go:43] Use the daemon mode
+2020-05-08 11:05:14 [INFO] [nft-port/main.go:46] 8387
+2020-05-08 11:05:14 [INFO] [nft-port/main.go:47] apikey
+2020-05-08 11:05:14 [INFO] [nft-port/main.go:56] Start daemon api server
+```
+
 ## 配置文件
 程序使用yaml格式配置文件，默认从./config.yaml读取，可使用 -c 指定配置文件
 
 这是一个模板配置文件
 ```yaml
 table-name: portforward
+
+daemon:
+  port: 8387
+  key: "apikey"
 
 port:
   - name: "test"
