@@ -3,8 +3,8 @@ package main
 import (
 	"bufio"
 	"flag"
-	httpDns "github.com/FanhuaCloud/nft-port/main/dns"
-	yamlUtil "github.com/FanhuaCloud/nft-port/main/yaml"
+	httpDns "github.com/FanhuaCloud/nft-port/dns"
+	yamlUtil "github.com/FanhuaCloud/nft-port/yaml"
 	"github.com/wonderivan/logger"
 	"os"
 	"os/exec"
@@ -128,6 +128,7 @@ func main() {
 	action := flag.String("a", "help", "Actions that need to be performed, can use resolve, load, clear, list, nft.")
 	domain := flag.String("d", "www.baidu.com", "Domain names that need to be resolved")
 	configPath := flag.String("c", "./config.yaml", "config_path")
+	//isDaemon := flag.Bool("d", false, "Use daemon mode")
 	flag.Parse()
 
 	//解析action
