@@ -101,7 +101,7 @@ table ip portforward {
 ```
 
 ## apiserver
-使用-m启动apiserver，程序将以daemon方式接受rest请求，目前版本暂未实现
+使用-m启动apiserver，程序将以daemon方式接受rest请求，目前已经完成简单实现
 ```bash
 [root@ecs-9JW ~]# ./nft_port_amd64_linux -m
 consoleLogger Init:{"level":"INFO","color":true,"LogLevel":0}
@@ -112,6 +112,22 @@ consoleLogger Init:{"level":"INFO","color":true,"LogLevel":0}
 2020-05-08 11:05:14 [INFO] [nft-port/main.go:46] 8387
 2020-05-08 11:05:14 [INFO] [nft-port/main.go:47] apikey
 2020-05-08 11:05:14 [INFO] [nft-port/main.go:56] Start daemon api server
+```
+请求路由
+```
+r := gin.Default()
+r.GET("/ping", ping)
+v1 := r.Group("/v1")
+v1.Use(checkApiKey(conf.DaemonConf.ApiKey))
+{
+    v1.DELETE("/port/:name", delPort)     // 删除port
+    v1.PUT("/port/:name", addPort)        // 增加port
+    v1.GET("/port/:name", getPort)        // 查看port信息
+    v1.POST("/conf/reload", reloadConfig) // 重载配置
+    v1.POST("/rules/reload", reloadRules) // 重载转发表
+    v1.POST("/rules/clear", clearRules)   // 清空转发表
+    v1.GET("/rules/list", listRules)      // 返回规则列表
+}
 ```
 
 ## 配置文件
