@@ -2,10 +2,10 @@ package yaml
 
 import (
 	"fmt"
+	httpDns "github.com/FanhuaCloud/nft-port/main/dns"
 	"github.com/wonderivan/logger"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
-	httpDns "nft-port/main/dns"
 	"strings"
 )
 

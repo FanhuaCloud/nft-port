@@ -3,9 +3,9 @@ package main
 import (
 	"bufio"
 	"flag"
+	httpDns "github.com/FanhuaCloud/nft-port/main/dns"
+	yamlUtil "github.com/FanhuaCloud/nft-port/main/yaml"
 	"github.com/wonderivan/logger"
-	httpDns "nft-port/main/dns"
-	yamlUtil "nft-port/main/yaml"
 	"os"
 	"os/exec"
 )

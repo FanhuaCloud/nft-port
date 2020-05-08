@@ -1,4 +1,4 @@
-module nft-port
+module github.com/FanhuaCloud/nft-port
 
 go 1.13
 
