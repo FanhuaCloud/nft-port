@@ -23,7 +23,7 @@ func main() {
 		logger.Error(err)
 	}
 	//输出版本信息
-	logger.Info("nft-port version 1.1")
+	logger.Info("nft-port version 1.2")
 	logger.Info("Aauthor: https://github.com/FanhuaCloud")
 
 	//设置flag
