@@ -5,7 +5,7 @@ import (
 	"fmt"
 	httpDns "github.com/FanhuaCloud/nft-port/dns"
 	"github.com/wonderivan/logger"
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 	"io/ioutil"
 	"os"
 	"os/exec"
