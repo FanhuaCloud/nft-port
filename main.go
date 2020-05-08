@@ -2,6 +2,8 @@ package main
 
 import (
 	"flag"
+	"fmt"
+	"github.com/FanhuaCloud/nft-port/api"
 	httpDns "github.com/FanhuaCloud/nft-port/dns"
 	yamlUtil "github.com/FanhuaCloud/nft-port/yaml"
 	"github.com/wonderivan/logger"
@@ -41,10 +43,8 @@ func main() {
 
 	if *isDaemon {
 		logger.Info("Use the daemon mode")
+		daemonListenIP := conf.DaemonConf.ListenIP
 		daemonPort := conf.DaemonConf.Port
-		daemonApiKey := conf.DaemonConf.ApiKey
-		logger.Info(daemonPort)
-		logger.Info(daemonApiKey)
 		if daemonPort == 0 {
 			daemonPort = 8766
 		}
@@ -54,6 +54,10 @@ func main() {
 			return
 		}
 		logger.Info("Start daemon api server")
+		err := api.RunApiServer(fmt.Sprintf("%s:%d", daemonListenIP, daemonPort), conf)
+		if err != nil {
+			logger.Error(err)
+		}
 		return
 	}
 

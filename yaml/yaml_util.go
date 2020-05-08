@@ -19,8 +19,9 @@ type Config struct {
 }
 
 type DaemonConf struct {
-	Port   int    `yaml:"port"`
-	ApiKey string `yaml:"key"`
+	ListenIP string `yaml:"listen-ip"`
+	Port     int    `yaml:"port"`
+	ApiKey   string `yaml:"key"`
 }
 
 type Port struct {
