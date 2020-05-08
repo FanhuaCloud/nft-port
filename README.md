@@ -156,4 +156,5 @@ port:
 ## 感谢
 - github.com/asmcos/requests
 - github.com/wonderivan/logger
-- gopkg.in/yaml.v2
+- gopkg.in/yaml.v3
+- github.com/gin-gonic/gin
